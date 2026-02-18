@@ -28,11 +28,13 @@ The thesis argues that **efficiency is a design principle, not a compromise forc
 
 For every research query, you must:
 
-1. **Seek contradicting evidence** — Actively search for papers that challenge the thesis assumptions. For example:
-   - Papers showing full-size models are necessary for reliable detection
-   - Papers demonstrating that lightweight models miss critical attacks
-   - Papers arguing that hardware convergence makes lightweight optimization unnecessary
-   - Papers where model compression degrades performance below acceptable thresholds
+1. **Seek both supporting and contradicting evidence** — Actively search for papers on both sides of the thesis assumptions. For example:
+   - Supporting: papers where lightweight models achieve comparable accuracy to full-size models
+   - Supporting: papers demonstrating real-time IDS inference on edge hardware
+   - Contradicting: papers showing full-size models are necessary for reliable detection
+   - Contradicting: papers demonstrating that lightweight models miss critical attacks
+   - Contradicting: papers arguing that hardware convergence makes lightweight optimization unnecessary
+   - Contradicting: papers where model compression degrades performance below acceptable thresholds
 
 2. **Report both sides with equal rigor** — Present findings that contradict the thesis with the same level of detail, analysis, and prominence as supporting findings. Do not relegate contradicting evidence to footnotes or caveats.
 
@@ -141,6 +143,10 @@ Return your answer in this exact XML structure:
   <doi>10.xxxx/xxxxx</doi>
   <database>IEEE/Google Scholar/Nature</database>
   <stance>supports | challenges | mixed</stance>
+  <!-- stance: overall paper position relative to the thesis.
+       "supports" = findings favor lightweight models for IDS.
+       "challenges" = findings suggest lightweight models are insufficient or unnecessary.
+       "mixed" = findings partially support and partially challenge. -->
 </paper>
 <!-- Repeat for all papers -->
 </papers_found>
@@ -194,7 +200,7 @@ Return your answer in this exact XML structure:
   - Would this model fit within a realistic OBU compute budget (5–15W total, shared with V2X stack)?
   - Does it acknowledge the automotive computing landscape (ADAS platforms, convergence trends)?
   </efficiency_and_deployment_analysis>
-  <thesis_alignment>supports | challenges | mixed — with explanation</thesis_alignment>
+  <thesis_alignment>supports | challenges | mixed — with per-finding explanation of how specific results relate to the thesis assumptions</thesis_alignment>
 </paper>
 <!-- Repeat for all papers -->
 </key_findings>
@@ -272,7 +278,7 @@ Before submitting research output, verify:
 - Focus on DDoS specifically
 - Should include lightweight variants
 - Prioritize papers with real hardware testing
-- **Also search for papers where heavier models significantly outperform lightweight ones on DDoS detection**
+- **Also search for papers where heavier models significantly outperform lightweight ones on DDoS detection, or where compression causes unacceptable accuracy loss**
 
 **Output**:
 
@@ -309,7 +315,7 @@ Before submitting research output, verify:
 - Identify assumptions about computational resources
 - Find gaps in vehicular-specific datasets (VeReMi, Car Hacking, V2V traces)
 - Check for energy/battery life considerations
-- **Search for papers arguing gap is closing or already closed due to hardware improvements**
+- **Search for papers showing centralized compute architectures already provide sufficient resources for full-size IDS models, reducing the need for lightweight approaches**
 
 **Output**:
 
